@@ -122,23 +122,17 @@ iii) The communication between the clients and the server is slower because the 
 ##Common JDBC Components
 The JDBC API provides the following interfaces and classes
 
-1)**DriverManager**
-This class manages a list of database drivers. It matches connection requests from the java
-application with the proper database driver using communication sub protocol.
+1. **DriverManager**
+   This class manages a list of database drivers. It matches connection requests from the java application with the proper database driver using communication sub protocol.
 
-2)**Driver**
-This interface handles the communications with the database server. You can interact directly
-with driver objects rarely but instead you can use DriverManager objects, which manages
-objects of this type.
+2. **Driver**
+   This interface handles the communications with the database server. You can interact directly with driver objects rarely but instead you can use DriverManager objects, which manages objects of this type.
 
 3. **Connection**
-   This interface handles all methods for connecting to a database. The connection object
-   represents communication context i.e. all communication with database is done through the
-   connection object only.
+   This interface handles all methods for connecting to a database. The connection object represents communication context i.e. all communication with database is done through the connection object only.
 
 4. **Statement**
-   Objects created from this interface are used to submit the SQL statements to the database.
-   Some derived interfaces accept the parameters in addition to executing stored procedures.
+   Objects created from this interface are used to submit the SQL statements to the database.Some derived interfaces accept the parameters in addition to executing stored procedures.
 
 5. **ResultSet**
    These objects hold data retrieved from a database after you execute an SQL query using
@@ -279,11 +273,6 @@ Before establishing the actual connection with database JDBC driver must be load
 
 There are two ways to load and register the driver.
 
-1. Load the JDBC driver
-
-To communicate with any database we have to use a driver. Before establishing the actual connection with database JDBC driver must be loaded.
-
-There are two ways to load and register the driver.
 **a) Using Class.forName() method**
 • Class.forName() is a static method of the class "Class".  
 This method loads the specified driver class.

@@ -52,7 +52,7 @@ to multiple heterogeneous databases.
 Following is the architectural diagram, which shows the location of the driver
 manager with respect to the JDBC drivers and the Java application —
 
-**Two-tier Architecture**
+##Two-tier Architecture
 Java Application Client Machine
 JDBC DBMS-proprietary protocol
 DBMS Database server
@@ -78,7 +78,7 @@ The network can be an intranet, which, for example, connects employees within a 
 2. Applets can only open up connections to the server from which they were downloaded.
 3. This requires that web server and database server should be present on the same machine.
 
-**Three-tier Architecture**
+##Three-tier Architecture
 
 Java applet or HTML. browser
 
@@ -119,7 +119,7 @@ i) The client does not maintain a persistent database connection.
 ii) A separate proxy server may be required.
 iii) The communication between the clients and the server is slower because the client calls must be translated into network protocol and then they must be translated into specific DB calls.
 
-**Common JDBC Components**
+##Common JDBC Components
 The JDBC API provides the following interfaces and classes
 
 1)**DriverManager**
@@ -147,7 +147,7 @@ objects of this type.
 6. **SQLException**
    This class handles any errors that occur in a database application.
 
-**JDBC Drivers**
+##JDBC Drivers
 
 JDBC drivers are set of classes that enable the JAVA application/program to communicate with
 database.
@@ -258,7 +258,7 @@ single driver can actually provide access to multiple databases.
 1. In Type-4 driver, user needs different drivers for each database.
    Eg:- to communicate with ORACLE server we need ORACLE driver.
 
-**Basic JDBC Steps**
+##Basic JDBC Steps
 
 All JDBC programs follow some basic steps to communicate with the database.
 
@@ -331,48 +331,21 @@ Once connection is created, you can use it to execute SQL statements.
 This is done by using statement object.
 There are three kinds of statements in JDBC.
 
-Method Description
-
-Statement
-1)A Statement represents a general SQL statement without parameters. 2) The method createStatement() creates a Statement object.
-
-PreparedStatement
-1)A PreparedStatement represents a precompiled SQL statement,with or without parameters.
-2)The method prepareStatement(String sql) creates a
-PreparedStatement object.
-
-CallableStatement
-1)CallableStatement objects are used to execute SQL stored
-procedures,
-2)The method prepareCall(String sql) creates a CallableStatement
-object.
+| Method            | Description                                                                                                                                                                |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Statement         | 1)A Statement represents a general SQL statement without parameters. <br/>2) The method createStatement() creates a Statement object.                                      |
+| PreparedStatement | 1)A PreparedStatement represents a precompiled SQL statement,with or without parameters. <br/>2)The method prepareStatement(String sql) creates aPreparedStatement object. |
+| CallableStatement | 1)CallableStatement objects are used to execute SQL stored procedures.<br/>2)The method prepareCall(String sql) creates a CallableStatement object.                        |
 
 **4) Execute a Query**
 
 The following methods of the statement interface are used to execute the SQL statements.
 
-Method Description
-
-ResultSet executeQuery(String sql)
-It is used for statements that return an output result.
-Example:- SELECT
-
-int executcUpdate(String sql)
-It is used for the statements which update the database,
-that is, that do not return an output.
-The executeUpdate returns an integer value specifying
-the number of rows affected by query.
-Example:- UPDATE, DELETE, CREATE TABLE,
-DROP TABLE and ALTER TABLE
-
-boolean execute(String sql)
-It is used when there may be multiple results returned.
-Used when we don’t know whether an SQL statement
-is going to return the results.
-If there is a result it can be obtained from the
-getResultSet() method.
-Example :- String query = “drop table if exists student”:
-boolean ans = stmt.execute(query);
+| Method                             | Description                                                                                                                                                                                                                                                                                                     |
+| ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ResultSet executeQuery(String sql) | It is used for statements that return an output result.<br/>Example:- SELECT                                                                                                                                                                                                                                    |
+| int executcUpdate(String sql)      | It is used for the statements which update the database,that is, that do not return an output.The executeUpdate returns an integer value specifying the number of rows affected by query.<br/>Example:- UPDATE, DELETE, CREATE TABLE,DROP TABLE and ALTER TABLE                                                 |
+| boolean execute(String sql)        | It is used when there may be multiple results returned.Used when we don’t know whether an SQL statement is going to return the results.If there is a result it can be obtained from thegetResultSet() method. <br/> Example :- String query = “drop table if exists student”:boolean ans = stmt.execute(query); |
 
 **5. Process the Result (data returned by database)**
 A ResultSet object contains the result of an executing SQL query.
@@ -393,7 +366,7 @@ Examples:- stmt.close();
 rs.close();
 con.close()
 
-**ResultSet (Scrollable and Updatable)**
+##ResultSet (Scrollable and Updatable)
 
 The query we fire on database will return some result if there is no problem in the query.
 The results are stored in ResultSet in java.
@@ -422,7 +395,7 @@ ResultSet. CONCUR_UPDATABLE
 
 The ResultSet interface provides methods for retrieving and manipulating the results of executed
 
-**Metadata**
+##Metadata
 
 Metadata means the data about database data or the information about tables, views, column
 types, column names, result set and stored procedures.
@@ -438,71 +411,33 @@ JDBC Metadata API is used to retrieve the following information about the databa
 
 JDBC provides four important interfaces to retrieve the metadata
 
-metadata Description
+| Method            | Description                                                                                                                                                                                                                     |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DatabaseMetaData  | This interface provides information about the database as a whole such as table name, indexes and version and product name.                                                                                                     |
+| ResultSetMetaData | It provides information about the ResultSet object returned from a databse query. It is used to find out number of columns, its name, type, length, table name , whether a column is readable/searchable or writable and so on. |
+| ParameterMetaData | It is used to get information about the types and properties of the parameters in the PreparedStatement object such as getting parameter count, it’s types, designated precision specified by the column size.                  |
+| RowSetMetaData    | It provides the information about the columns in a RowSet object and can be used to find out number of columns contains in a rowset or the type of data in each column.                                                         |
 
-DatabaseMetaData
-This interface provides information about the database as a whole such
-as table name, indexes and version and product name.
-
-ResultSetMetaData
-It provides information about the ResultSet object returned from a databse query.
-It is used to find out number of columns, its name, type, length, table
-name , whether a column is readable/searchable or writable and so on.
-
-ParameterMetaData
-It is used to get information about the types and properties of the parameters in the PreparedStatement object such as getting parameter count, it’s types, designated precision specified by the column size.
-
-RowSetMetaData
-It provides the information about the columns in a RowSet object and can be used to find out number of columns contains in a rowset or the type of data in each column.
-
-**DatabaseMetaData**
+##DatabaseMetaData
 
 DatabaseMetaData interface provides methods to get meta data of a database such as database
 product name, database product version, driver name, name of total number of tables, name of total number of views etc.
 
-| DatabaseMetaData dbmd=con.getMetaData();
+DatabaseMetaData dbmd=con.getMetaData();
 
-Methods Description
-
-String getURLQ)
-Retrieves the URL for this DBMS.
-
-String getUserName()
-Retrieves the user name as known to this database.
-
-String getDatabaseProductName()
-Retrieves the name of this database product.
-
-String getDatabaseProductVersion()
-Retrieves the version number of this database product.
-
-int getDatabaseMajor Version()
-Retrieves the major version number of the underlying
-database.
-
-int getDatabaseMinorVersion()
-Retrieves the minor version number of the underlying
-database.
-
-String getDriverName()
-Retrieves the name of this JDBC driver.
-
-String getDriverVersion()
-Retrieves the version number of this JDBC driver as
-a String.
-
-int\_ getDriverMajorVersion()
-Retrieves this JDBC driver's major version number.
-
-int getDriverMinorVersion()
-Retrieves this JDBC driver's minor version number.
-
-ResultSet getTables(String catalog,
-String schemaPattern,
-String tableNamePattern,
-String[] types)
-Retrieves a description of the tables available in the given
-catalog.
+| Method                                                                                         | Description                                                           |
+| ---------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| String getURLQ)                                                                                | Retrieves the URL for this DBMS.                                      |
+| String getUserName()                                                                           | Retrieves the user name as known to this database.                    |
+| String getDatabaseProductName()                                                                | Retrieves the name of this database product.                          |
+| String getDatabaseProductVersion()                                                             | Retrieves the version number of this database product.                |
+| int getDatabaseMajor Version()                                                                 | Retrieves the major version number of the underlying database.        |
+| int getDatabaseMinorVersion()                                                                  | Retrieves the minor version number of the underlying database.        |
+| String getDriverName()                                                                         | Retrieves the name of this JDBC driver.                               |
+| String getDriverVersion()                                                                      | Retrieves the version number of this JDBC driver as a String.         |
+| int\_ getDriverMajorVersion()                                                                  | Retrieves this JDBC driver's major version number.                    |
+| int getDriverMinorVersion()                                                                    | Retrieves this JDBC driver's minor version number.                    |
+| ResultSet getTables(String catalog,String schemaPatternString tableNamePattern,String[] types) | Retrieves a description of the tables available in the given catalog. |
 
 **DatabaseMetaData Program**
 
@@ -568,64 +503,23 @@ If you have to get metadata of a table like total number of column, column name,
 
 [ResultSetMetaData rsmd=rs.getMetaData();
 
-Methods
-Description
-
-String get ableName(int column)
-Gets the designated column's table name.
-
-int getColumnCount()
-Returns the number of columns in
-this ResultSet object.
-
-String getColumnLabel(int column)
-Gets the designated column's suggested title for use
-in printouts and displays.
-
-String getColumnName(int column)
-Get the designated column's name.
-
-int getColumnDisplaySize(int column)
-Indicates the designated column's normal maximum
-width in characters.
-
-int getColumnType(int column)
-Retrieves the designated column's SQL type.
-
-String getColumnTypeName(int column)
-Retrieves the designated column's database-specific
-type name.
-
-int getPrecision(int column)
-Get the designated column's specified column size.
-
-boolean isAutoIncrement(int column)
-Indicates whether the designated column is
-automatically numbered.
-
-boolean isCurrency(int column)
-Indicates whether the designated column is a cash
-value.
-
-boolean isReadOnly(int column)
-Indicates whether the designated column is
-definitely not writable.
-
-boolean isWritable(int column)
-Indicates whether it is possible for a write on the
-designated column to succeed.
-
-boolean isSearchable(int column)
-Indicates whether the designated column can be used
-in a where clause.
-
-boolean isSigned(int column)
-Indicates whether values in the designated column
-are signed numbers.
-
-int isNullable(int column)
-Indicates the nullability of values in the designated
-column.
+| Method                               | Description                                                                       |
+| ------------------------------------ | --------------------------------------------------------------------------------- |
+| String get ableName(int column)      | Gets the designated column's table name.                                          |
+| int getColumnCount()                 | Returns the number of columns in this ResultSet object.                           |
+| String getColumnLabel(int column)    | Gets the designated column's suggested title for usein printouts and displays.    |
+| String getColumnName(int column)     | Get the designated column's name.                                                 |
+| int getColumnDisplaySize(int column) | Indicates the designated column's normal maximum width in characters.             |
+| int getColumnType(int column)        | Retrieves the designated column's SQL type.                                       |
+| String getColumnTypeName(int column) | Retrieves the designated column's database-specific type name.                    |
+| int getPrecision(int column)         | Get the designated column's specified column size.                                |
+| boolean isAutoIncrement(int column)  | Indicates whether the designated column is automatically numbered.                |
+| boolean isCurrency(int column)       | Indicates whether the designated column is a cash value.                          |
+| boolean isReadOnly(int column)       | Indicates whether the designated column is definitely not writable.               |
+| boolean isWritable(int column)       | Indicates whether it is possible for a write on the designated column to succeed. |
+| boolean isSearchable(int column)     | Indicates whether the designated column can be used in a where clause.            |
+| boolean isSigned(int column)         | Indicates whether values in the designated columnare signed numbers.              |
+| int isNullable(int column)           | Indicates the nullability of values in the designatedcolumn.                      |
 
 **ResultSetMetaData Program**
 
